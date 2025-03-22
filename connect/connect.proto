@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package connect;
+option go_package="./connect";
+
+message Request {
+  string ping = 1;
+}
+
+message Response {
+  string pong = 1;
+}
+
+service Connect {
+  rpc Ping(Request) returns(Response);
+}

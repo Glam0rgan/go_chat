@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package imrpc;
+option go_package="./imrpc";
+
+service Imrpc {  
+    rpc Login(LoginRequest) returns (LoginResponse);  
+    rpc Logout(LogoutRequest) returns (LogoutResponse);
+    rpc PostMessage(PostMsg) returns (PostResponse);
+}
+
+message PostMsg {
+    string msg = 1;
+    string Token = 2;
+    string ToUserName = 3;
+}
+
+message PostResponse {
+  uint32 code = 1;
+  string desc = 2;
+}
+
+message LoginRequest {  
+    string username = 1;
+    string password = 2;   
+}
+
+message LoginResponse {  
+    string Token = 1;
+    bytes body = 2;
+}
+
+message LogoutRequest {  
+    string token = 1;  
+    string sessionId = 2;
+}
+
+message LogoutResponse {    
+    bytes body = 1;
+}
